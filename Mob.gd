@@ -51,13 +51,12 @@ func _change_state(new_state):
 	_state = new_state
 
 func move_to(world_position):
-	var MASS = 10.0
-	var ARRIVE_DISTANCE = 16.0
+	var ARRIVE_DISTANCE = 1.0
 	var desired_velocity = (world_position - position).normalized() * speed
 	var steering = desired_velocity - velocity
-	velocity += steering / MASS
+	velocity += steering
 	position += velocity * get_process_delta_time()
-	rotation = velocity.angle()
+	#rotation = velocity.angle()
 	return position.distance_to(world_position) < ARRIVE_DISTANCE
 
 func destroy_blocking_cells():
